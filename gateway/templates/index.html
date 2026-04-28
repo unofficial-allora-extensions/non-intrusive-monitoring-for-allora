@@ -1,0 +1,183 @@
+<html>
+<head>
+  <title>AlLoRa Gateway - "Dashboard"</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    
+    tr{
+      height: 60px;
+    }
+
+    .header {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    .header img {
+      height: 160px;
+    }
+
+    td.reset-cell {
+      padding: 0;
+    }
+
+    td.reset-cell form {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    td.reset-cell button {
+      width: 100%;
+      height: 60px;
+      box-sizing: border-box;
+      font-weight: bold;
+      cursor: pointer;
+      background-color: #4a80eb;
+      color: white;
+      border: none;
+    }
+
+    td.reset-cell button:hover {
+      background-color: #423fd8;
+    }
+
+    td.conn-ack-cell {
+      padding: 0;
+    }
+
+    td.conn-ack-cell form {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    td.conn-ack-cell button {
+      width: 100%;
+      height: 60px;
+      box-sizing: border-box;
+      font-weight: bold;
+      cursor: pointer;
+      background-color: #099032;
+      color: white;
+      border: none;
+    }
+
+    td.conn-ack-cell button:hover {
+      background-color: #19eb5fae;
+    }
+
+    td.hard-reboot-cell {
+      padding: 0;
+    }
+
+    td.hard-reboot-cell form {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    td.hard-reboot-cell button {
+      width: 100%;
+      height: 60px;
+      box-sizing: border-box;
+      font-weight: bold;
+      cursor: pointer;
+      background-color: #d9534f;
+      color: white;
+      border: none;
+    }
+
+    td.hard-reboot-cell button:hover {
+      background-color: #c9302c;
+    }
+  </style>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        if (sessionStorage.getItem('ack') === '1') {
+            sessionStorage.removeItem('ack');
+            setTimeout(() => {
+                window.location.reload();
+            }, 5000);
+        }
+    });
+  </script>
+
+</head>
+<body>
+
+<div class="header">
+  <h1>AlLoRa Gateway – "Dashboard"</h1>
+  <img src="/static/logo.png" alt="AlLoRa Logo">
+</div>
+
+<h2>Client Nodes</h2>
+
+<table border="1">
+<tr>
+  <th>MAC</th><th>MAC Controller</th><th>RSSI</th><th>SNR</th><th>Free_RAM (B)</th>
+  <th>Used_RAM (B)</th><th>Total_RAM (B)</th>
+  <th>Internal Temperature (ºC)</th><th>Uptime</th><th>Request CONN-ACK</th><th>Soft-Reset Node</th><th>Hard-Reset Node</th><th>Status</th>
+</tr>
+
+{% for mac, m in metrics.items() %}
+<tr>
+  <td>{{ client_macs.get(mac, "-") }}</td>
+  <td>{{ mac }}</td>
+  <td>{{ m.rssi }}</td>
+  <td>{{ m.snr }}</td>
+  <td>{{ m.RAM_Libre }}</td>
+  <td>{{ m.RAM_Usada }}</td>
+  <td>{{ m.RAM_Total }}</td>
+  <td>{{ m.Temperature }}</td>
+  <td>{{ m.Uptime }}</td>
+
+  <td class="conn-ack-cell">
+    <form method="post" action="/conn-ack/{{ mac }}" onsubmit="sessionStorage.setItem('ack', '1');">
+      <button type="submit">C. ACK</button>
+    </form>
+  </td>
+  
+  <td class="reset-cell">
+    <form method="post" action="/reset/{{ mac }}">
+      <button type="submit">S-RESET</button>
+    </form>
+  </td>
+
+  <td class="hard-reboot-cell">
+    <form method="post" action="/hard-reboot/{{ mac }}">
+      <button type="submit">H-RESET</button>
+    </form>
+  </td>
+
+  <td>
+    {% if node_status is defined and mac in node_status %}
+      {% if node_status[mac].state == "CONNECTED" %}
+        <div style="font-size: 16px;">CONNECTED <br> - <br> {{ node_status[mac].timestamp }}</div>
+      {% elif node_status[mac].state == "DISCONNECTED" %}
+        <div style="font-size: 16px;">DISCONNECTED <br> - <br> {{ node_status[mac].timestamp }}</div>
+      {% else %}
+        <div style="font-size: 16px;">PENDING... <br> - <br> {{ node_status[mac].timestamp }}</div>
+      {% endif %}
+    {% else %}
+      <div style="font-size: 16px;">-</div>
+    {% endif %}
+  </td>
+
+</tr>
+{% endfor %}
+</table>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+{
+    "name": "G",
+    "debug": true,
+    "mesh_mode": false,
+    "chunk_size": 235,
+    "short_mac": false,
+    
+    "connector": {
+        "freq": 868,
+ 	"sf": 7,
+ 	"bw": 125,
+ 	"cr": 1,
+ 	"tx_power": 14,
+
+ 	"min_timeout": 0.5,
+ 	"max_timeout": 12,
+
+        "serial_port": "/dev/serial0",
+        "baud": 115200,
+        "timeout": 1,
+        "debug": true
+    },
+
+    "result_path": "/home/usuario/Desktop/Prueba_Serial/Results",
+    "nodes_file": "Nodes.json",
+    "time_per_endpoint": 10
+}

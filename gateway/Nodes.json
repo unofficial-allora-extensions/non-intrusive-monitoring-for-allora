@@ -1,0 +1,13 @@
+[
+
+  {
+      "name": "LilyGO_client_1",
+      "mac_address": "75e19e30",
+      "sleep_mesh" : false,
+      "active": true,
+      "asking_frequency": 5,
+      "listening_time": 10,
+      "lock_on_file_receive": true,
+      "max_listen_time_when_locked": 3
+    }
+]

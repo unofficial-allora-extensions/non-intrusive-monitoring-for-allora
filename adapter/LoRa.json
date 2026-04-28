@@ -1,0 +1,31 @@
+{
+  "name": "LoRa_Adapter",
+  "chunk_size": 235,
+  "mesh_mode": false,
+  "debug": true,
+  "short_mac": false,
+
+  "connector": {
+    "freq": 868,
+    "sf": 7,
+    "bw": 125,
+    "cr": 1,
+    "power": 14,
+
+    "min_timeout": 0.5,
+    "max_timeout": 12,
+    
+    "debug": true
+  },
+
+  "interface": {
+    "uartid": 1,
+    "baud": 115200,
+    "tx": 41,
+    "rx": 42,
+    "bits": 8,
+    "parity": null,
+    "stop": 1,
+    "timeout_char": 1000
+  }
+}

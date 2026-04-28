@@ -1,0 +1,24 @@
+#Create service for automatic execution of the program at restart
+#Edit /etc/systemd/system/NAME_OF_SERVICE.service like this (sudo nano /etc/systemd/system/NAME_OF_SERVICE.service):
+
+[Unit]
+Description=UART source slave for LilyGO
+After=network.target
+
+[Service]
+Type=simple
+User=grc2024
+WorkingDirectory=/home/grc2024/Desktop/source_serial_uart
+ExecStart=/usr/bin/python3 /home/grc2024/Desktop/source_serial_uart/source_serial_uart_dosNucleos.py
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target
+
+
+#Then enable and start the new service:
+
+sudo systemctl daemon-reload
+sudo systemctl enable source-uart.service
+sudo systemctl start source-uart.service

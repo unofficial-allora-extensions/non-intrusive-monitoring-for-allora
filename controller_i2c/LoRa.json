@@ -1,0 +1,16 @@
+{
+    "name": "I2C_Controller",
+    "chunk_size": 235,
+    "mesh_mode": false,
+    "debug": true,
+    "short_mac": false,
+    "connector": {
+      "sf": 7,
+      "freq": 868,
+      "bw": 125,
+      "cr": 1,
+      "tx_power": 14,
+      "min_timeout": 0.5,
+      "max_timeout": 12
+      }
+ }

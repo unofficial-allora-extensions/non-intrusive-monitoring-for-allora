@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+title: Non-intrusive monitoring for AlLoRa
+message: >-
+  If you use this software, please cite it using the metadata from this file.
+type: software
+authors:
+  - given-names: Diego
+    family-names: Rios Gomez
+    email: driogom@upv.edu.es
+    affiliation: UPV
+abstract: >-
+  Community project for non-intrusive monitoring and control support in
+  AlLoRa-based deployments. Based on the AlLoRa protocol by Benjamin Arratia and
+  collaborators (https://github.com/SMARTLAGOON/SMLG_AlLoRa).
+  
+  This repository is not an official AlLoRa repository.
+repository-code: "https://github.com/TU_USUARIO/TU_REPO"
+keywords:
+  - IoT
+  - LoRa
+  - AlLoRa
+  - Environmental Intelligence
+  - LPWAN
+  - MicroPython
+  - Arduino
+  - LilyGO
+  - Raspberry Pi
+license: GPL-3.0
+version: 1.0.0
+date-released: 2026-04-27

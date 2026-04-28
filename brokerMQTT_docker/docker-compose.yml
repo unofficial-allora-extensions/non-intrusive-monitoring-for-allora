@@ -1,0 +1,75 @@
+version: '3.8'
+
+services:
+
+  mosquitto:
+    image: eclipse-mosquitto:2
+    container_name: mosquitto
+    restart: unless-stopped
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    volumes:
+      - ./mosquitto/config:/mosquitto/config
+      - ./mosquitto/data:/mosquitto/data
+      - ./mosquitto/log:/mosquitto/log
+    deploy:
+      resources:
+        limits:
+          memory: 128m
+
+  influxdb:
+    image: influxdb:2
+    container_name: influxdb
+    restart: unless-stopped
+    ports:
+      - "8086:8086"
+    volumes:
+      - influxdb-data:/var/lib/influxdb2
+      - influxdb-backups:/backups
+    deploy:
+      resources:
+        limits:
+          memory: 1g
+
+  grafana:
+    image: grafana/grafana:9.5.15
+    container_name: grafana
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./grafana-plugins:/var/lib/grafana/plugins
+    deploy:
+      resources:
+        limits:
+          memory: 512m
+    depends_on:
+      - influxdb
+    environment:
+      - GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS=geeksrus-mqtt-panel
+
+  telegraf:
+    image: telegraf:1.29
+    container_name: telegraf
+    restart: unless-stopped
+    depends_on:
+      - mosquitto
+      - influxdb
+    volumes:
+      - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf
+    deploy:
+      resources:
+        limits:
+          memory: 128m
+
+volumes:
+  influxdb-data:
+  grafana-data:
+  influxdb-backups:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/pi/influx_backups
+      o: bind
