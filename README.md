@@ -74,7 +74,7 @@ The example of network architecture designed for this proyect is shown in the su
     <img src="readme_assets/low_level_architecture.png"  width="75%">
 </p>
 
-The MQTT broker can interact with multiple AlLoRa Gateways, and those Gateways have their assigned controller nodes [[see Nodes.json]](gateway/Nodes.json)
+The MQTT broker can interact with multiple AlLoRa Gateways, and those Gateways have their assigned controller nodes [[see Nodes.json]](gateway/Nodes.json).
 
 ## Control Circuits
 The simple electric circuits used for allowing the hard-reboot of the terminal nodes are presented in the following diagrams. As their energetical needs differ from one another, the hardware employed in each case (LilyGO sensing node/Raspberry Pi sensing node) varies accordingly. These configurations allow for the main control/supervision function of the project to work.
