@@ -6,7 +6,7 @@ Because its operation is based on disconnecting the return path to ground, this 
 
 It should also be noted that the module itself is powered through the same PWM line, together with a ground reference that must be shared with both the controller node and the controlled node, i.e. the common ground used in their serial I2C interconnection. Since the control signal is provided by another LilyGO board, the PWM terminal is connected to one of its GPIO pins. Several of these pins are available for this purpose; in this implementation, IO38 was used.
 
-Finally, for the default state of the MOSFET to keep the LilyGO ground return closed — that is, for the controlled node to remain powered on — the control signal must normally be held at a high level, except when a reset command is issued by the controller. This is achieved by configuring the startup file of the controller LilyGO nodes (boot.py) so that, upon boot, pin IO38 is set to 3.3 V with respect to ground, which is sufficient to drive the PWM control input
+Finally, for the default state of the MOSFET to keep the LilyGO ground return closed — that is, for the controlled node to remain powered on — the control signal must normally be held at a high level, except when a reset command is issued by the controller. This is achieved by configuring the startup file of the controller LilyGO nodes (boot.py) so that, upon boot, pin IO38 is set to 3.3 V with respect to ground, which is sufficient to drive the PWM control input.
 
 ## Electrical control scheme — Raspberry Pi 3 end node
 

@@ -71,21 +71,21 @@ If you use this repository, please refer to the metadata in `CITATION.cff`.
 The example of network architecture designed for this proyect is shown in the subsequent diagram. The gateway nodes execute the polling of the controllers, which in turn require the data from the sensing nodes. They send the results over MQTT to the broker, and receive from it the control commands to be transmitted to those controllers.
 
 <p align="center">
-    <img src="readme_assets/low_level_architecture.png"  width="50%">
+    <img src="readme_assets/low_level_architecture.png"  width="75%">
 </p>
 
-The MQTT broker can interact with multiple AlLoRa Gateways, and those Gateways have their assigned controller nodes [see Nodes.json](gateway/Nodes.json)
+The MQTT broker can interact with multiple AlLoRa Gateways, and those Gateways have their assigned controller nodes [[see Nodes.json]](gateway/Nodes.json)
 
 ## Control Circuits
 The simple electric circuits used for allowing the hard-reboot of the terminal nodes are presented in the following diagrams. As their energetical needs differ from one another, the hardware employed in each case (LilyGO sensing node/Raspberry Pi sensing node) varies accordingly. These configurations allow for the main control/supervision function of the project to work.
 
 ### Control Circuit for LilyGO sensing nodes
 <p align="center">
-    <img src="readme_assets/lilygo_circuit_diagram.png"  width="50%">
+    <img src="readme_assets/lilygo_circuit_diagram.png"  width="75%">
 </p>
 
 ### Control Circuit for Raspberry Pi sensing nodes
 <p align="center">
-    <img src="readme_assets/raspberry_circuit_diagram.png"  width="50%">
+    <img src="readme_assets/raspberry_circuit_diagram.png"  width="75%">
 </p>
 

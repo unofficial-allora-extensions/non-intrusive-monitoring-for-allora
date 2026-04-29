@@ -1,3 +1,6 @@
+# Important Note
+The binary file named "firmware_sensor_node" is intended to be used by the LilyGO T3S3 that acts as a sensor node. This is important because the
+general micropython firmware for LilyGOs -also provided in the same directory of the repository as the other one- DOES NOT include the necessary support for obtaining the "internal temperature" metric. That alternative firmware is a newly compilated one, and the general one comes directly from the official AlLoRa repository (https://github.com/SMARTLAGOON/SMLG_AlLoRa/tree/main/firmware/T3S3).
 
 # Flashing Micropython in LILYGO T3S3
 
