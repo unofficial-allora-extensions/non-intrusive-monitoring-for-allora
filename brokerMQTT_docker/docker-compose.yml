@@ -48,6 +48,7 @@ services:
       - influxdb
     environment:
       - GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS=geeksrus-mqtt-panel
+      - GF_DASHBOARDS_MIN_REFRESH_INTERVAL=1s
 
   telegraf:
     image: telegraf:1.29
